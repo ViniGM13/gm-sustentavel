@@ -62,6 +62,17 @@ function mostrarPergunta() {
     inputs.forEach(input => {
       input.addEventListener("change", () => {
         btnProximo.disabled = false;
+
+        // Remove a classe 'selecionado' de todos os labels
+        form.querySelectorAll("label").forEach(label => {
+          label.classList.remove("selecionado");
+        });
+
+        // Adiciona a classe 'selecionado' ao label do input selecionado
+        const selectedLabel = input.closest("label");
+        if (selectedLabel) {
+          selectedLabel.classList.add("selecionado");
+        }
       });
     });
 
@@ -86,10 +97,10 @@ function finalizarQuestionario() {
     <div class="final-box" style="padding:20px; max-width: 400px; margin: 0 auto; background:#fff; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
       <h2 style="color: #28a745; font-weight: bold;">✅ Obrigado por responder!</h2>
       <p style="font-size: 16px;">Se estiver no celular, tire um print das suas respostas e envie por este link:</p>
-      <p><a href="https://forms.gle/R2FfPQiuNw6D5cWC7" target="_blank" style="color:#28a745; font-weight:bold;">👉 Enviar print aqui</a></p>
+      <p><a href="https://forms.gle/JF7UvX3spuUD6tFTA" target="_blank" style="color:#28a745; font-weight:bold;">👉 Enviar print aqui</a></p>
       <hr style="margin: 15px 0;">
       <h3 style="font-weight: bold; margin-bottom: 10px;">Suas respostas:</h3>
-      <ul style="text-align: left; max-height: 200px; overflow-y: auto; padding-left: 20px;">
+      <ul id="listaRespostas">
         ${respostas.map((resp, idx) => `<li><strong>${perguntas[idx].pergunta}:</strong> ${resp}</li>`).join('')}
       </ul>
     </div>
