@@ -119,7 +119,7 @@ body {
     opacity: 0;
   }
   100% {
-    top: 68%;
+    top: 80%;
     opacity: 1;
   }
 }
